@@ -1,9 +1,0 @@
-variable "name" {}
-variable "network_self_link" {}
-variable "template_self_link" {}
-variable "count_node_vm" {}
-variable "count_master_vm" {}
-variable "project" {}
-variable "region" {}
-variable "zone" {}
-variable "meta_info" {}
