@@ -19,13 +19,11 @@ module "nodes" {
   project = var.project
   region = var.region
   zone = var.zone
-
   meta_info = var.meta_info
 
 }
 module "provision" {
   source      = "./modules/provision"
-  private_key = module.environment.private_key
   balancer_ip = module.nodes.balancer_ip
   instances_nodes = module.nodes.instances_nodes
   instances_masters = module.nodes.instances_masters

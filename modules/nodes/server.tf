@@ -1,26 +1,9 @@
 
-resource "google_compute_instance" "default_server" {
+resource "google_compute_instance_from_template" "default_server" {
   name = "${var.name}-server"
   project = var.project
   zone = "${var.region}-${var.zone}"
-  machine_type = var.machine_type
-  network_interface {
-    network = google_compute_network.default.self_link
-    access_config {}
-  }
-  disk {
-    source_image = var.centos_image
-  }
-  scheduling {
-    automatic_restart = true
-  }
-  metadata = {
-    sshKeys = "${var.meta_info.owner}:${tls_private_key.default.public_key_openssh}"
-  }
-  labels = var.meta_info
-  service_account {
-    scopes = ["userinfo-email", "compute-ro", "storage-ro"]
-  }
+  source_instance_template = var.template_self_link
 }
 resource "null_resource" "provision_nodes" {
   provisioner "remote-exec" {
@@ -35,7 +18,7 @@ resource "null_resource" "provision_nodes" {
   connection {
     type     = "ssh"
     user     = var.meta_info.owner
-    host = google_compute_instance.default_server.network_interface.0.access_config.0.nat_ip
-    private_key = var.private_key
+    host = google_compute_instance_from_template.default_server.network_interface.0.access_config.0.nat_ip
+    private_key = file("./keys/${var.meta_info.owner}")
   }
 }

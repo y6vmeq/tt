@@ -9,7 +9,7 @@
     type     = "ssh"
     user     = var.meta_info.owner
     host = var.instances_nodes[count.index]
-    private_key = var.private_key
+    private_key = file("./keys/${var.meta_info.owner}")
   }
 }
 
@@ -24,7 +24,7 @@
     type     = "ssh"
     user     = var.meta_info.owner
     host = var.instances_masters[count.index]
-    private_key = var.private_key
+    private_key = file("./keys/${var.meta_info.owner}")
   }
 }
 
