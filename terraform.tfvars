@@ -1,6 +1,6 @@
 name = "vault"
 count_node_vm = 2
-count_master_vm = 2
+count_master_vm = 1
 project = "plucky-weaver-247211"
 region = "us-central1"
 zone = "a"
