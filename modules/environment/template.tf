@@ -20,7 +20,4 @@ resource "google_compute_instance_template" "default" {
   service_account {
     scopes = ["userinfo-email", "compute-ro", "storage-ro"]
   }
-  # metadata_startup_script = templatefile("data/template/user_data.sh.tpl", {
-  #   user_name = var.meta_info.owner
-  # })
 }
