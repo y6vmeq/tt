@@ -4,7 +4,7 @@ resource "google_compute_instance_from_template" "default_server" {
   zone = "${var.region}-${var.zone}"
   source_instance_template = var.template_self_link
 }
-resource "null_resource" "provision_nodes" {
+resource "null_resource" "provision_server" {
   provisioner "remote-exec" {
     inline = [
       "wget https://releases.hashicorp.com/vault/1.2.3/vault_1.2.3_linux_amd64.zip",
