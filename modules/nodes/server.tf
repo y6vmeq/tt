@@ -4,9 +4,12 @@ resource "google_compute_instance_from_template" "default_server" {
   zone = "${var.region}-${var.zone}"
   source_instance_template = var.template_self_link
 }
-resource "null_resource" "provision_server" {
+resource "null_resource" "server_provision" {
   provisioner "remote-exec" {
     inline = [<<EOF
+      sudo yum -y update
+      sudo yum -y upgrade
+      sudo yum -y install git wget unzip
       wget https://releases.hashicorp.com/vault/1.2.3/vault_1.2.3_linux_amd64.zip
       sudo unzip vault_1.2.3_linux_amd64.zip -d /usr/local/bin/
       sudo rm -rf vault_1.2.3_linux_amd64.zip
