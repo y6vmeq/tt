@@ -1,4 +1,3 @@
-
 resource "google_compute_instance_from_template" "default_server" {
   name = "${var.name}-server"
   project = var.project
