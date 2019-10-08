@@ -7,9 +7,7 @@ resource "google_compute_instance_from_template" "default_server" {
 resource "null_resource" "server_provision" {
   provisioner "remote-exec" {
     inline = [<<EOF
-      sudo yum -y update
-      sudo yum -y upgrade
-      sudo yum -y install git wget unzip
+      sudo yum -y install wget unzip
       wget https://releases.hashicorp.com/vault/1.2.3/vault_1.2.3_linux_amd64.zip
       sudo unzip vault_1.2.3_linux_amd64.zip -d /usr/bin/
       sudo rm -rf vault_1.2.3_linux_amd64.zip
