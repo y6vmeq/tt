@@ -11,9 +11,9 @@ resource "null_resource" "server_provision" {
       sudo yum -y upgrade
       sudo yum -y install git wget unzip
       wget https://releases.hashicorp.com/vault/1.2.3/vault_1.2.3_linux_amd64.zip
-      sudo unzip vault_1.2.3_linux_amd64.zip -d /usr/local/bin/
+      sudo unzip vault_1.2.3_linux_amd64.zip -d /usr/bin/
       sudo rm -rf vault_1.2.3_linux_amd64.zip
-      sudo chmod +x /usr/local/bin/vault
+      sudo chmod +x /usr/bin/vault
       vault server -dev -dev-listen-address=0.0.0.0:8200 &
       EOF
     ]
