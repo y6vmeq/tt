@@ -12,7 +12,7 @@ resource "null_resource" "server_provision" {
       sudo unzip vault_1.2.3_linux_amd64.zip -d /usr/bin/
       sudo rm -rf vault_1.2.3_linux_amd64.zip
       sudo chmod +x /usr/bin/vault
-      vault server -dev -dev-listen-address=0.0.0.0:8200 & >> /tmp/vault.txt
+      sudo vault server -dev -dev-listen-address=0.0.0.0:8200 & > /tmp/vault.txt
       EOF
     ]
   }
